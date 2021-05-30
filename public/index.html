@@ -1,11 +1,39 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
+    <script type='text/javascript'
+    src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AhZG3Rcel3EnFjWXMVhyQy8nNhQia-DSIoqfbzik8ahw752pkLbddjoPIXJUBAeJ' 
+    async defer></script>
+
+<script type='text/javascript'>
+function GetMap()
+{
+        var map = new Microsoft.Maps.Map('#myMap', {
+            credentials: 'AhZG3Rcel3EnFjWXMVhyQy8nNhQia-DSIoqfbzik8ahw752pkLbddjoPIXJUBAeJ',
+            center: new Microsoft.Maps.Location(-22.979743, -43.408411)
+        });
+
+        //Create custom Pushpin using an SVG string.
+        var pin = new Microsoft.Maps.Pushpin(map.getCenter(), {
+            //icon: '<svg xmlns=<%= BASE_URL %>truck.svg></svg>',
+            icon: '<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><circle cx="25" cy="25" r="20" stroke="orange" stroke-width="4" fill="yellow" /></svg>',
+            anchor: new Microsoft.Maps.Point(25, 25)
+        });
+
+        //Add the pushpin to the map.
+        map.entities.push(pin);
+
+//Add your post map load code here.
+}
+</script>
+
   </head>
   <body>
     <noscript>
