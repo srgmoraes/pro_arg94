@@ -13,24 +13,78 @@
     async defer></script>
 
 <script type='text/javascript'>
+var infobox;
 function GetMap()
 {
-        var map = new Microsoft.Maps.Map('#myMap', {
-            credentials: 'AhZG3Rcel3EnFjWXMVhyQy8nNhQia-DSIoqfbzik8ahw752pkLbddjoPIXJUBAeJ',
-            center: new Microsoft.Maps.Location(-22.979743, -43.408411)
-        });
+    var map = new Microsoft.Maps.Map('#myMap', {
+        credentials: 'AhZG3Rcel3EnFjWXMVhyQy8nNhQia-DSIoqfbzik8ahw752pkLbddjoPIXJUBAeJ'
+    });
 
-        //Create custom Pushpin using an SVG string.
-        var pin = new Microsoft.Maps.Pushpin(map.getCenter(), {
-            //icon: '<svg xmlns=<%= BASE_URL %>truck.svg></svg>',
-            icon: '<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><circle cx="25" cy="25" r="20" stroke="orange" stroke-width="4" fill="yellow" /></svg>',
-            anchor: new Microsoft.Maps.Point(25, 25)
-        });
+    //Create an infobox at the center of the map but don't show it.
+    infobox = new Microsoft.Maps.Infobox(map.getCenter(), {
+          visible: false
+    });
 
-        //Add the pushpin to the map.
-        map.entities.push(pin);
+    //Assign the infobox to a map instance.
+    infobox.setMap(map);
 
-//Add your post map load code here.
+    var pinA = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(-22.979743, -43.408411), {
+      icon: '<%= BASE_URL %>truck.svg',
+      anchor: new Microsoft.Maps.Point(0, 0),
+      title: 'Caminhão A',
+      subTitle: 'Queijo Minas'
+    });
+
+    pinA.metadata = {
+      title: 'Caminhão A',
+      description: 'Queijo Minas'
+    };
+
+    Microsoft.Maps.Events.addHandler(pinA, 'click', pushpinClicked);
+    map.entities.push(pinA);
+
+    var pinB = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(-22.938660, -43.349595), {
+        icon: '<%= BASE_URL %>truck.svg',
+        anchor: new Microsoft.Maps.Point(0, 0),
+        title: 'Caminhão B',
+        subTitle: 'Supermercado Guanabara'
+    });
+
+    pinB.metadata = {
+      title: 'Supermercado Guanabara',
+      description: 'Queijo Minas'
+    };
+
+    Microsoft.Maps.Events.addHandler(pinB, 'click', pushpinClicked);
+    map.entities.push(pinB);
+
+    var pinC = new Microsoft.Maps.Pushpin(new Microsoft.Maps.Location(-23.010394, -43.351399), {
+        icon: '<%= BASE_URL %>fridge.svg',
+        anchor: new Microsoft.Maps.Point(0, 0),
+        title: 'Quiosque dos amigos'
+    });
+
+    pinC.metadata = {
+      title: 'Quiosque dos amigos',
+      description: 'Queijo Minas'
+    };
+
+    Microsoft.Maps.Events.addHandler(pinC, 'click', pushpinClicked);
+    map.entities.push(pinC);   
+
+}
+
+function pushpinClicked(e) {
+  //Make sure the infobox has metadata to display.
+  if (e.target.metadata) {
+      //Set the infobox options with the metadata of the pushpin.
+      infobox.setOptions({
+          location: e.target.getLocation(),
+          title: e.target.metadata.title,
+          description: e.target.metadata.description,
+          visible: true
+      });
+  }
 }
 </script>
 

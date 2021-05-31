@@ -107,7 +107,8 @@ export default {
     itemsMenuAlerta: [
       { loja: 'Porto BR', maxima:'25.1°C ', minima:'14.3°C', data:'10/01/2020 14:30:13' },
       { loja: 'Farmacia Novo Horizonte', maxima:'25.1°C', minima:'14.3°C', data:'10/01/2020 14:30:13' },
-      { loja: 'Suermercado Mundial', maxima:'25.1°C', minima:'14.3°C', data:'10/01/2020 14:30:13' },
+      { loja: 'Supermercado Mundial', maxima:'25.1°C', minima:'14.3°C', data:'10/01/2020 14:30:13' },
+      { loja: 'Caminhão A - Queijo Minas', maxima:'25.1°C', minima:'14.3°C', data:'10/01/2020 14:30:13' },
     ],
 
     itemsMenu: [
